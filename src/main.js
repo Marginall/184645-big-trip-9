@@ -2,7 +2,7 @@ import {createTripInfo} from './components/trip';
 import {createMenu} from './components/menu';
 import {createFilter} from './components/filter';
 import {createSort} from './components/sort';
-import {createCard} from './components/card';
+import {renderPoint} from './components/card';
 import {createEventForm} from './components/event-edit';
 
 const renderComponents = (container, component, place) => {
@@ -21,7 +21,7 @@ renderComponents(tripEventsContainer, createSort(), `beforeend`);
 renderComponents(tripEventsContainer, tripDaysContainer, `beforeend`);
 
 const daysList = tripEventsContainer.querySelector(`.trip-days`);
-renderComponents(daysList, createCard(), `afterbegin`);
+renderComponents(daysList, renderPoint(), `afterbegin`);
 
 const dayEventsList = daysList.querySelector(`.trip-events__list`);
 renderComponents(dayEventsList, createEventForm(), `afterbegin`);
