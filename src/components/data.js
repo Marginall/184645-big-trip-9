@@ -1,7 +1,7 @@
 
-export const eventData = {
-  title: 'test',
-  days: [1, 2, 3],
+export const getData = () => ({
+  title: `test`,
+  days: [1],
   typeEvent: [
     {
       type: `taxi`,
@@ -24,4 +24,4 @@ export const eventData = {
       src: `img/icons/hotel.png`
     }
   ]
-};
+});

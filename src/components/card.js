@@ -1,7 +1,7 @@
-export const createPoint = (data) => data.forEach((item, index) =>
-  `<li class="trip-days__item  day">
+export const createPoint = (days) => {
+  return `<li class="trip-days__item  day">
     <div class="day__info">
-      <span class="day__counter">${data.title}</span>
+      <span class="day__counter">${days[0]}</span>
       <time class="day__date" datetime="2019-03-18">MAR 18</time>
     </div>
 
@@ -41,13 +41,5 @@ export const createPoint = (data) => data.forEach((item, index) =>
         </div>
       </li>
     </ul>
-  </li>`
-);
-
-// export const renderPoint = function () {
-
-//   new Array(eventData()).forEach(function (event) {
-//     console.log(event);
-//     // createPoint(event);
-//   });
-// };
+  </li>`;
+};
