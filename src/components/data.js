@@ -1,5 +1,7 @@
 
-export const eventData = () => ({
+export const eventData = {
+  title: 'test',
+  days: [1, 2, 3],
   typeEvent: [
     {
       type: `taxi`,
@@ -20,6 +22,6 @@ export const eventData = () => ({
       type: `hotel`,
       typeName: `Check into hotel`,
       src: `img/icons/hotel.png`
-    },
+    }
   ]
-});
+};

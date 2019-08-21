@@ -1,9 +1,7 @@
-import {eventData} from './data';
-
-export const createPoint = (type) =>
+export const createPoint = (data) => data.forEach((item, index) =>
   `<li class="trip-days__item  day">
     <div class="day__info">
-      <span class="day__counter">1</span>
+      <span class="day__counter">${data.title}</span>
       <time class="day__date" datetime="2019-03-18">MAR 18</time>
     </div>
 
@@ -13,7 +11,7 @@ export const createPoint = (type) =>
           <div class="event__type">
             <img class="event__type-icon" width="42" height="42" src="img/icons/taxi.png" alt="Event type icon">
           </div>
-          <h3 class="event__title">${type.typeName}</h3>
+          <h3 class="event__title"></h3>
 
           <div class="event__schedule">
             <p class="event__time">
@@ -43,13 +41,13 @@ export const createPoint = (type) =>
         </div>
       </li>
     </ul>
-  </li>`;
+  </li>`
+);
 
-export const renderPoint = function () {
-  console.log(eventData());
+// export const renderPoint = function () {
 
-  new Array(eventData()).forEach(function (event) {
-    console.log(event);
-    // createPoint(event);
-  });
-};
+//   new Array(eventData()).forEach(function (event) {
+//     console.log(event);
+//     // createPoint(event);
+//   });
+// };

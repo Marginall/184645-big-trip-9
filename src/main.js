@@ -2,8 +2,9 @@ import {createTripInfo} from './components/trip';
 import {createMenu} from './components/menu';
 import {createFilter} from './components/filter';
 import {createSort} from './components/sort';
-import {renderPoint} from './components/card';
+import {createPoint} from './components/card';
 import {createEventForm} from './components/event-edit';
+import {eventData} from './components/data';
 
 const renderComponents = (container, component, place) => {
   container.insertAdjacentHTML(place, component);
@@ -21,7 +22,7 @@ renderComponents(tripEventsContainer, createSort(), `beforeend`);
 renderComponents(tripEventsContainer, tripDaysContainer, `beforeend`);
 
 const daysList = tripEventsContainer.querySelector(`.trip-days`);
-renderComponents(daysList, renderPoint(), `afterbegin`);
+renderComponents(daysList, createPoint(eventData.days), `afterbegin`);
 
-const dayEventsList = daysList.querySelector(`.trip-events__list`);
-renderComponents(dayEventsList, createEventForm(), `afterbegin`);
+// const dayEventsList = daysList.querySelector(`.trip-events__list`);
+// renderComponents(dayEventsList, createEventForm(), `afterbegin`);
