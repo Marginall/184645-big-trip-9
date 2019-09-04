@@ -1,7 +1,7 @@
-export const createPoint = (days) => {
+export const createPoint = () => {
   return `<li class="trip-days__item  day">
     <div class="day__info">
-      <span class="day__counter">${days[0]}</span>
+      <span class="day__counter">1</span>
       <time class="day__date" datetime="2019-03-18">MAR 18</time>
     </div>
 
@@ -11,7 +11,7 @@ export const createPoint = (days) => {
           <div class="event__type">
             <img class="event__type-icon" width="42" height="42" src="img/icons/taxi.png" alt="Event type icon">
           </div>
-          <h3 class="event__title"></h3>
+          <h3 class="event__title">Taxi to airport</h3>
 
           <div class="event__schedule">
             <p class="event__time">

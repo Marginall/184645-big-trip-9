@@ -4,9 +4,6 @@ import {createFilter} from './components/filter';
 import {createSort} from './components/sort';
 import {createPoint} from './components/card';
 import {createEventForm} from './components/event-edit';
-import {getData} from './components/data';
-
-const {days} = getData();
 
 const renderComponents = (container, component, place) => {
   container.insertAdjacentHTML(place, component);
@@ -24,7 +21,7 @@ renderComponents(tripEventsContainer, createSort(), `beforeend`);
 renderComponents(tripEventsContainer, tripDaysContainer, `beforeend`);
 
 const daysList = tripEventsContainer.querySelector(`.trip-days`);
-renderComponents(daysList, createPoint(days), `afterbegin`);
+renderComponents(daysList, createPoint(), `afterbegin`);
 
 // const dayEventsList = daysList.querySelector(`.trip-events__list`);
 // renderComponents(dayEventsList, createEventForm(), `afterbegin`);
