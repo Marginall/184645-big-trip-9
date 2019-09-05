@@ -31,22 +31,24 @@ export const destinations = [
   `Praga`
 ];
 
+export const offers = [
+  {name: `Add luggage`, price: randomNumber(1000)},
+  {name: `Switch to comfort class`, price: randomNumber(1000)},
+  {name: `Add meal`, price: randomNumber(1000)},
+  {name: `Choose seats`, price: randomNumber(1000)}
+];
+
 export const getTripPoint = () => ({
   tripPointType: tripPointTypes[randomNumber(9)],
   destination: destinations[randomNumber(5)],
   startDate: randomDate(-3, 4),
   finishDate: randomDate(4, 5),
   price: randomNumber(1000),
-  offers: [
-    {name: `Add luggage`, price: randomNumber(1000), check: Boolean(Math.round(Math.random()))},
-    {name: `Switch to comfort class`, price: randomNumber(1000), check: Boolean(Math.round(Math.random()))},
-    {name: `Add meal`, price: randomNumber(1000), check: Boolean(Math.round(Math.random()))},
-    {name: `Choose seats`, price: randomNumber(1000), check: Boolean(Math.round(Math.random()))}
-  ],
+  offers: offers[randomNumber(4)],
   description: getDescription(descriptionFrom)
 });
 
-export const filter = [
+export const filters = [
   {title: `everything`, checked: true},
   {title: `future`, checked: false},
   {title: `past`, count: false}

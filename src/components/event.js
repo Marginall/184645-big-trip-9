@@ -1,4 +1,19 @@
+// import {convertMillisec} from 'util';
+
 export const createEvent = ({tripPointType, destination, startDate, finishDate, price, offers, description}) => {
+
+  const convertMillisec = (millisec) => {
+    let s = Math.floor(millisec / 1000);
+    let m = Math.floor(s / 60);
+    s = s % 60;
+    let h = Math.floor(m / 60);
+    m = m % 60;
+    let d = Math.floor(h / 24);
+    h = h % 24;
+    h += d * 24;
+    return h + `H` + ` ` + m + `M`;
+  };
+
   return `<li class="trip-events__item">
     <div class="event">
       <div class="event__type">
@@ -12,7 +27,7 @@ export const createEvent = ({tripPointType, destination, startDate, finishDate, 
           &mdash;
           <time class="event__end-time" datetime="${new Date(finishDate)}">${new Date(finishDate).getHours()} : ${new Date(finishDate).getMinutes()}</time>
         </p>
-        <p class="event__duration">${new Date(finishDate - startDate).toDateString()}</p>
+        <p class="event__duration">${convertMillisec(finishDate - startDate)}</p>
       </div>
 
       <p class="event__price">
@@ -22,11 +37,9 @@ export const createEvent = ({tripPointType, destination, startDate, finishDate, 
       <h4 class="visually-hidden">Offers:</h4>
       <ul class="event__selected-offers">
         <li class="event__offer">
-          ${Array.from(offers).map((offer) => `
-            <span class="event__offer-title">${offer.name}</span>
-            &plus;
-            &euro;&nbsp;<span class="event__offer-price">${offer.price}</span>
-          `).join(``)}
+          <span class="event__offer-title">${offers.name}</span>
+          &plus;
+          &euro;&nbsp;<span class="event__offer-price">${offers.price}</span>
         </li>
       </ul>
 
