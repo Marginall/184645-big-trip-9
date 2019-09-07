@@ -1,19 +1,6 @@
-// import {convertMillisec} from 'util';
+import {convertMillisec} from '../util/util';
 
-export const createEvent = ({tripPointType, destination, startDate, finishDate, price, offers, description}) => {
-
-  const convertMillisec = (millisec) => {
-    let s = Math.floor(millisec / 1000);
-    let m = Math.floor(s / 60);
-    s = s % 60;
-    let h = Math.floor(m / 60);
-    m = m % 60;
-    let d = Math.floor(h / 24);
-    h = h % 24;
-    h += d * 24;
-    return h + `H` + ` ` + m + `M`;
-  };
-
+export const createEvent = ({tripPointType, destination, startDate, finishDate, price, offers}) => {
   return `<li class="trip-events__item">
     <div class="event">
       <div class="event__type">
