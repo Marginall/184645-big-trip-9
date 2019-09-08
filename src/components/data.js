@@ -39,14 +39,35 @@ export const offers = [
   {name: `Choose seats`, price: randomNumber(1000)}
 ];
 
-export const getTripPoint = () => ({
-  tripPointType: tripPointTypes[randomNumber(9)],
-  startDate: randomDate(-3, 4),
-  finishDate: randomDate(4, 5),
-  price: randomNumber(1000),
-  offers: offers[randomNumber(4)],
-  description: getDescription(descriptionFrom)
-});
+export const getTripPoint = () => [
+  {
+    destinations: destinations[randomNumber(5)],
+    tripPointType: tripPointTypes[randomNumber(9)],
+    startDate: randomDate(-3, 4),
+    finishDate: randomDate(4, 5),
+    price: randomNumber(1000),
+    offers: offers[randomNumber(4)],
+    description: getDescription(descriptionFrom)
+  },
+  {
+    destinations: destinations[randomNumber(5)],
+    tripPointType: tripPointTypes[randomNumber(9)],
+    startDate: randomDate(-3, 4),
+    finishDate: randomDate(4, 5),
+    price: randomNumber(1000),
+    offers: offers[randomNumber(4)],
+    description: getDescription(descriptionFrom)
+  },
+  {
+    destinations: destinations[randomNumber(5)],
+    tripPointType: tripPointTypes[randomNumber(9)],
+    startDate: randomDate(-3, 4),
+    finishDate: randomDate(4, 5),
+    price: randomNumber(1000),
+    offers: offers[randomNumber(4)],
+    description: getDescription(descriptionFrom)
+  }
+];
 
 export const filters = [
   {title: `everything`, checked: true},

@@ -6,8 +6,7 @@ import {createSort} from './components/sort';
 import {createEvent} from './components/event';
 import {createEventList} from './components/event-list';
 import {createEventForm} from './components/event-edit';
-import {getTripPoint, filters, menu} from './components/data';
-import {destinations} from './components/data';
+import {getTripPoint, filters, menu, destinations} from './components/data';
 import {randomNumber} from './util/util';
 
 const DAYS = 3;
@@ -42,14 +41,15 @@ renderComponents(filtersForm, filters.map((filter) => createFilter(filter)).join
 renderComponents(tripEventsContainer, createSort(), `beforeend`);
 renderComponents(tripEventsContainer, tripDaysContainer, `beforeend`);
 
-const daysList = tripEventsContainer.querySelector(`.trip-days`);
-renderComponents(daysList, createEventList(), `afterbegin`);
-const eventsList = tripEventsContainer.querySelector(`.trip-events__list`);
-const daysCount = new Array(DAYS);
-const tripEvents = new Array(TRIP_COUNT);
+const tripDays = tripEventsContainer.querySelector(`.trip-days`);
+const createDay = (index) => {
+  renderComponents(tripDays, createEventList(index), `beforeend`);
+  let daysList = document.querySelectorAll(`.day`);
+  let eventList = daysList[index].querySelector(`.trip-events__list`);
+  new Array(TRIP_COUNT).fill(``).map(() => renderComponents(eventList, createEvent(getTripPoint()[index]), `afterbegin`));
+};
 
-
-tripEvents.fill(``).map(() => renderComponents(eventsList, createEvent(getTripPoint()), `afterbegin`));
+new Array(DAYS).fill(``).map((day, index) => createDay(index));
 
 // const dayEventsList = daysList.querySelector(`.trip-events__list`);
 // renderComponents(dayEventsList, createEventForm(), `afterbegin`);
