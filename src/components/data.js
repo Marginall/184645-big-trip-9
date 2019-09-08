@@ -13,18 +13,18 @@ const getDescription = (descript)=>{
 getDescription(descriptionFrom);
 
 export const tripPointTypes = [
-  {name: `bus`, move: true},
-  {name: `drive`, move: true},
-  {name: `ship`, move: true},
-  {name: `taxi`, move: true},
-  {name: `train`, move: true},
-  {name: `transport`, move: true},
-  {name: `check-in`, move: false},
-  {name: `restaurant`, move: false},
-  {name: `sightseeing`, move: false}
+  {name: `bus`, move: true, active: true},
+  {name: `drive`, move: true, active: false},
+  {name: `ship`, move: true, active: false},
+  {name: `taxi`, move: true, active: false},
+  {name: `train`, move: true, active: false},
+  {name: `transport`, move: true, active: false},
+  {name: `check-in`, move: false, active: false},
+  {name: `restaurant`, move: false, active: false},
+  {name: `sightseeing`, move: false, active: false}
 ];
 
-export const destinations = [
+export const destinationList = [
   `Moscow`,
   `Paris`,
   `Kiev`,
@@ -33,39 +33,55 @@ export const destinations = [
 ];
 
 export const offers = [
-  {name: `Add luggage`, price: randomNumber(1000)},
-  {name: `Switch to comfort class`, price: randomNumber(1000)},
-  {name: `Add meal`, price: randomNumber(1000)},
-  {name: `Choose seats`, price: randomNumber(1000)}
+  {name: `Add luggage`, price: randomNumber(1000), checked: true},
+  {name: `Switch to comfort class`, price: randomNumber(1000), checked: true},
+  {name: `Add meal`, price: randomNumber(1000), checked: false},
+  {name: `Choose seats`, price: randomNumber(1000), checked: false},
+  {name: `Travel by train`, price: randomNumber(1000), checked: false}
 ];
+
+export const images = new Array(5).fill(``).map(() => `http://picsum.photos/300/150?r=${Math.random()}`);
 
 export const getTripPoint = () => [
   {
-    destinations: destinations[randomNumber(5)],
-    tripPointType: tripPointTypes[randomNumber(9)],
+    destinations: destinationList[randomNumber(5)],
+    tripPointType: tripPointTypes,
     startDate: randomDate(-3, 4),
     finishDate: randomDate(4, 5),
     price: randomNumber(1000),
-    offers: offers[randomNumber(4)],
-    description: getDescription(descriptionFrom)
+    offers,
+    description: getDescription(descriptionFrom),
+    images
   },
   {
-    destinations: destinations[randomNumber(5)],
+    destinations: destinationList[randomNumber(5)],
     tripPointType: tripPointTypes[randomNumber(9)],
     startDate: randomDate(-3, 4),
     finishDate: randomDate(4, 5),
     price: randomNumber(1000),
-    offers: offers[randomNumber(4)],
-    description: getDescription(descriptionFrom)
+    offers: offers[randomNumber(5)],
+    description: getDescription(descriptionFrom),
+    images
   },
   {
-    destinations: destinations[randomNumber(5)],
+    destinations: destinationList[randomNumber(5)],
     tripPointType: tripPointTypes[randomNumber(9)],
     startDate: randomDate(-3, 4),
     finishDate: randomDate(4, 5),
     price: randomNumber(1000),
-    offers: offers[randomNumber(4)],
-    description: getDescription(descriptionFrom)
+    offers: offers[randomNumber(5)],
+    description: getDescription(descriptionFrom),
+    images
+  },
+  {
+    destinations: destinationList[randomNumber(5)],
+    tripPointType: tripPointTypes[randomNumber(9)],
+    startDate: randomDate(-3, 4),
+    finishDate: randomDate(4, 5),
+    price: randomNumber(1000),
+    offers: offers[randomNumber(5)],
+    description: getDescription(descriptionFrom),
+    images
   }
 ];
 

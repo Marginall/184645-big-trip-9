@@ -10,9 +10,9 @@ export const createEvent = ({tripPointType, destinations, startDate, finishDate,
 
       <div class="event__schedule">
         <p class="event__time">
-          <time class="event__start-time" datetime="${new Date(startDate)}">${new Date(startDate).getHours()} : ${new Date(startDate).getMinutes()}</time>
+          <time class="event__start-time" datetime="${new Date(startDate)}">${new Date(startDate).getHours()}:${new Date(startDate).getMinutes()}</time>
           &mdash;
-          <time class="event__end-time" datetime="${new Date(finishDate)}">${new Date(finishDate).getHours()} : ${new Date(finishDate).getMinutes()}</time>
+          <time class="event__end-time" datetime="${new Date(finishDate)}">${new Date(finishDate).getHours()}:${new Date(finishDate).getMinutes()}</time>
         </p>
         <p class="event__duration">${convertMillisec(finishDate - startDate)}</p>
       </div>
