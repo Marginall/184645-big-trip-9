@@ -50,3 +50,15 @@ const createDay = (index, tripCount) => {
 };
 
 new Array(DAYS).fill(``).map((day, index) => index === 0 ? createDay(index, 1) : createDay(index, TRIP_COUNT));
+
+const costСalculation = () => {
+  const prices = document.querySelectorAll(`.event__price-value`);
+  let cost = 0;
+  let tripCost = document.querySelector(`.trip-info__cost-value`);
+  prices.forEach((item) => {
+    cost = parseInt(item.textContent, `radix`) + cost;
+  });
+  tripCost.innerHTML = `` + cost;
+};
+
+costСalculation();
