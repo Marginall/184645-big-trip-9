@@ -1,8 +1,3 @@
-export const createMenu = () => {
-  return `
-    <nav class="trip-controls__trip-tabs  trip-tabs">
-      <a class="trip-tabs__btn  trip-tabs__btn--active" href="#">Table</a>
-      <a class="trip-tabs__btn" href="#">Stats</a>
-    </nav>
-  `;
-};
+export const createMenu = (menu) => `<nav class="trip-controls__trip-tabs trip-tabs">
+  ${menu.map((menuItem) => `<a class="trip-tabs__btn ${menuItem.active ? `trip-tabs__btn--active` : ``}" href="#">${menuItem.title}</a>`).join(``)}
+</nav>`;
