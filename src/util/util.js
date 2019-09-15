@@ -12,3 +12,27 @@ export const convertMillisec = (millisec) => {
 
 export const randomNumber = (number)=> Math.floor(Math.random() * number);
 export const randomDate = (lowerLimit, dayCount)=> Date.now() + lowerLimit * 24 * 60 * 60 * 1000 + randomNumber(dayCount) * 24 * 60 * 60 * 1000;
+
+export const createElement = (template) => {
+  const newElement = document.createElement(`div`);
+  newElement.innerHTML = template;
+  return newElement.firstChild;
+};
+
+export const Position = {
+  AFTERBEGIN: `afterbegin`,
+  BEFOREEND: `beforeend`
+};
+
+export const render = (container, element, place) => {
+  switch (place) {
+    case Position.AFTERBEGIN:
+      container.prepend(element);
+      break;
+    case Position.BEFOREEND:
+      container.append(element);
+      break;
+  }
+};
+
+export default {randomNumber, randomDate, convertMillisec, createElement, render};

@@ -1,3 +1,24 @@
-export const createMenu = (menu) => `<nav class="trip-controls__trip-tabs trip-tabs">
-  ${menu.map((menuItem) => `<a class="trip-tabs__btn ${menuItem.active ? `trip-tabs__btn--active` : ``}" href="#">${menuItem.title}</a>`).join(``)}
-</nav>`;
+import {createElement} from '../util/util';
+
+export class Menu {
+  constructor(title, active) {
+    this._title = title;
+    this._active = active;
+    this._element = null;
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  getTemplate() {
+    return `
+      <nav class="trip-controls__trip-tabs trip-tabs">
+        <a class="trip-tabs__btn ${this._active ? `trip-tabs__btn--active` : ``}" href="#">${this._title}</a>
+      </nav>`;
+  }
+}
