@@ -1,64 +1,72 @@
-import {createTripInfo} from './components/trip';
-import {createMenu} from './components/menu';
-import {createFiltersForm} from './components/filtersForm';
-import {createFilter} from './components/filter';
-import {createSort} from './components/sort';
-import {createEvent} from './components/event';
-import {createEventList} from './components/event-list';
-import {createEventForm} from './components/event-edit';
-import {getTripPoint, filters, menu, destinationList} from './components/data';
-import {randomNumber} from './util/util';
+import {
+  Route,
+  Menu,
+  Filter,
+  Sort,
+  Price,
+  DayNumber
+} from "./components/index";
 
-const DAYS = 3;
-const TRIP_COUNT = 4;
+import {
+  addSection,
+  appendSection,
+  createElement
+} from "./utils/dom";
 
-const renderComponents = (container, component, place) => {
-  container.insertAdjacentHTML(place, component);
+import {
+  routePoints,
+  points,
+  dates
+} from "./data";
+
+const routePlace = document.querySelector(`.trip-main__trip-info`);
+const menuPlace = document.querySelector(`.trip-controls h2:first-child`);
+const filtersPlace = document.querySelector(`.trip-controls h2:last-child`);
+const contentPlace = document.querySelector(`.trip-events`);
+
+const renderRoute = (routeMock) => {
+  const route = new Route(routeMock, `section`, [`board`, `container`]);
+  return route.getTemplate();
 };
 
-const getCities = (citiesList, count) => {
-  let cities = [];
-  const arr = new Array(count);
-  arr.fill(``).map(() => cities.push(citiesList[randomNumber(5)]));
-
-  cities.splice(1, 0, `...`);
-  return cities;
+const renderPrice = () => {
+  const totalPrice = new Price();
+  addSection(routePlace, totalPrice.getTemplate(), `beforeend`);
 };
 
-const tripInfoContainer = document.querySelector(`.trip-info`);
-const tripControls = document.querySelector(`.trip-controls`);
-const tripEventsContainer = document.querySelector(`.trip-events`);
-const tripDaysContainer = `<ul class="trip-days"></ul>`;
-const startDate = `Mar 18&nbsp;&mdash;&nbsp;21`;
-
-renderComponents(tripInfoContainer, createTripInfo(startDate, getCities(destinationList, 2)), `afterbegin`);
-renderComponents(tripControls, createMenu(menu), `afterbegin`);
-renderComponents(tripControls, createFiltersForm(), `beforeend`);
-
-const filtersForm = document.querySelector(`.trip-filters`);
-
-renderComponents(filtersForm, filters.map((filter) => createFilter(filter)).join(``), `beforeend`);
-renderComponents(tripEventsContainer, createSort(), `beforeend`);
-renderComponents(tripEventsContainer, tripDaysContainer, `beforeend`);
-const tripDays = tripEventsContainer.querySelector(`.trip-days`);
-
-const createDay = (index, tripCount) => {
-  renderComponents(tripDays, createEventList(index), `beforeend`);
-  let daysList = document.querySelectorAll(`.day`);
-  let eventList = daysList[index].querySelector(`.trip-events__list`);
-  new Array(tripCount).fill(``).map(() => index === 0 ? renderComponents(eventList, createEventForm(getTripPoint()[index]), `afterbegin`) : renderComponents(eventList, createEvent(getTripPoint()[index]), `beforeend`));
+const renderMenu = () => {
+  const menu = new Menu();
+  addSection(menuPlace, menu.getTemplate(), `afterend`);
 };
 
-new Array(DAYS).fill(``).map((day, index) => index === 0 ? createDay(index, 1) : createDay(index, TRIP_COUNT));
-
-const costСalculation = () => {
-  const prices = document.querySelectorAll(`.event__price-value`);
-  let cost = 0;
-  let tripCost = document.querySelector(`.trip-info__cost-value`);
-  prices.forEach((item) => {
-    cost = parseInt(item.textContent, `radix`) + cost;
-  });
-  tripCost.innerHTML = `` + cost;
+const renderFilter = () => {
+  const filter = new Filter();
+  addSection(filtersPlace, filter.getTemplate(), `afterend`);
 };
 
-costСalculation();
+const renderSorting = () => {
+  const sorting = new Sort();
+  addSection(contentPlace, sorting.getTemplate(), `afterbegin`);
+};
+
+const renderDate = (dateMock, pointItems) => {
+  const date = new DayNumber(dateMock, `ul`, [`trip-days`], pointItems);
+  appendSection(contentPlace, date.getElement());
+};
+// Rendering
+
+const route = routePoints.map(renderRoute).join(`\n`);
+const routeBlock = createElement(route, `div`, [`trip-info__main`]);
+appendSection(routePlace, routeBlock);
+
+renderPrice();
+
+renderMenu();
+
+renderFilter();
+
+// Sorting
+renderSorting();
+
+// const eventBlock =  ;
+dates.forEach((date) => renderDate(date, points));
