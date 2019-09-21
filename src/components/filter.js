@@ -1,34 +1,29 @@
-import {createElement} from '../util/util';
+import {filterTypes} from "../data";
 
-export const createFilter = (filter) => {
-  return `
-    <div class="trip-filters__filter">
-      <input id="filter-${filter.title}" class="trip-filters__filter-input  visually-hidden" type="radio" name="trip-filter" value="${filter.title}">
-      <label class="trip-filters__filter-label" for="filter-${filter.title}">${filter.title}</label>
-    </div>
-  `;
-};
-
-export class Filter {
-  constructor(filter) {
-    this._filter = filter;
-    this._element = null;
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
+class Filter {
 
   getTemplate() {
     return `
-    <div class="trip-filters__filter">
-      <input id="filter-${filter.title}" class="trip-filters__filter-input  visually-hidden" type="radio" name="trip-filter" value="${filter.title}">
-      <label class="trip-filters__filter-label" for="filter-${filter.title}">${filter.title}</label>
-    </div>
+    <form class="trip-filters" action="#" method="get">
+      ${filterTypes.map(this._getFilterTemplate).join(`\n`)}
+
+      <button class="visually-hidden" type="submit">
+        Accept filter
+      </button>
+    </form>
+    `;
+  }
+
+  _getFilterTemplate(filter) {
+    return `
+  <div class="trip-filters__filter">
+    <input id="filter-${filter.toLowerCase()}" class="trip-filters__filter-input  visually-hidden" type="radio" name="trip-filter" value="everything" checked>
+    <label class="trip-filters__filter-label" for="filter-${filter.toLowerCase()}">
+      ${filter}
+    </label>
+  </div>
   `;
   }
 }
+
+export default Filter;
