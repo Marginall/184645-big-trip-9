@@ -70,3 +70,4 @@ renderSorting();
 
 // const eventBlock =  ;
 dates.forEach((date) => renderDate(date, points));
+
